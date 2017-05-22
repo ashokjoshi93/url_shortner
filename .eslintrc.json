@@ -1,0 +1,30 @@
+{
+  "extends": ["airbnb", "plugin:react/recommended"],
+  "globals": {
+    "$": true
+  },
+  "plugins": [
+    "cucumber",
+    "react"
+  ],
+  "rules": {
+    "max-len": 1,
+    "newline-per-chained-call": 0,
+    "no-console": [1, { "allow": ["info", "warn", "error"] }],
+    "no-underscore-dangle": 0,
+    "no-unused-vars": [
+      2,
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "React(DOM)?"
+      }
+    ],
+    "quote-props": [2, "consistent-as-needed"],
+    "react/prop-types": 0,
+    "react/jsx-space-before-closing": 0,
+    "react/jsx-uses-react": 0,
+    "react/sort-comp": 0,
+    "space-before-function-paren": [1, "always"],
+    "consistent-return":0
+  }
+}

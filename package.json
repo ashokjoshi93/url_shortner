@@ -1,0 +1,30 @@
+{
+  "name": "url_shortner",
+  "version": "0.0.0",
+  "description": "Sellnews core API",
+  "private": true,
+  "repository": "giturl",
+  "README": "none",
+  "licence": "APACHE 2.0",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.10.0",
+    "morgan": "~1.8.1"
+  },
+  "devDependencies": {
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-cucumber": "^0.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
+    "nodemon": "^1.11.0"
+  }
+}
