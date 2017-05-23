@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const config = require('../config');
 const routes = require('./routes');
-
+const bluebird = require('bluebird');
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.disable('x-powered-by');
 // enable detailed API logging in dev env
 // db connection
 mongoose.connect(config.db);
-
+mongoose.Promise = bluebird;
 // mount all routes on api/v1.0 path
 app.use('/api/v1.0', routes);
 
