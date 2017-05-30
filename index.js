@@ -4,5 +4,5 @@ const app = require('./server/express');
 const application = config.application;
 
 app.listen(application.port, () => {
-  console.info(`server started on port ${application.port} (${application.env})`);
+  console.info(`server started on port ${application.port} (${application.env}) at ${new Date().toLocaleString()}\n\n\n\n\n\n`);
 });

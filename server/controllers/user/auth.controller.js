@@ -1,6 +1,8 @@
+const bcrypt = require('bcrypt');
+
 const User = require('../../models/user/user.model');
 const authHelper = require('../../helpers/auth/index');
-const bcrypt = require('bcrypt');
+const resGenerator = require('../../response');
 
 module.exports = {
   register: (req, res) => {
@@ -19,16 +21,17 @@ module.exports = {
       // delete pass
       delete userResData.pass;
       // send res
-      res.json({
-        user: userResData,
-        // generate JWT token
-        token: authHelper.generateJWT(userResData),
-      });
+      userResData.token = authHelper.generateJWT(userResData);
+      resGenerator.genrateSuccessRes(res, userResData, 'REGISTRATION_SUCC');
     })
     .catch((err) => {
-      console.error(err.message);
       // return error
-      return res.status(500).send('Could not add the user');
+      const emailErrorRegex = /users[.][$]email.*dup key:/g;
+      if (emailErrorRegex.test(err.message)) {
+        resGenerator.generateErrorRes(res, null, 'REGISTRATION_FAILED_DUP_EMAIL');
+      } else {
+        resGenerator.generateErrorRes(res, null, 'REGISTRATION_FAILED');
+      }
     });
   },
   login: (req, res) => {
@@ -39,12 +42,13 @@ module.exports = {
       .then((isPassCorrect) => {
         if (isPassCorrect) {
           console.info('Login successful');
-          res.json({
-            userName: user.firstName,
-            userEmail: user.email,
-          });
+          const userResData = user;
+          delete userResData.firstName;
+          delete userResData.lastName;
+          delete userResData.pass;
+          resGenerator.genrateSuccessRes(res, userResData, 'LOGIN_SUCC');
         } else {
-          console.info('Wrong Password');
+          resGenerator.generateErrorRes(res, null, 'LOGIN_FAILED');
         }
       });
     })
